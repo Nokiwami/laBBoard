@@ -1,0 +1,76 @@
+<%# 特定の記事を表示する用のejs %>
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <%- include('header') %>
+    <main>
+      <div class="question">
+        <h2><%=article.title%></h2>
+        <h5 class="content-user">質問ユーザー: <%=article.user%></h5>
+        <p><%=article.content%></p>
+        <% if (typeof user === "undefined") { %>
+        <p>編集、削除するにはログインしてください。</p>
+        <% } else if (article.user === user.username) { %>
+        <form
+          action="/articles/<%= article.article_id %>/edit-page"
+          method="get"
+        >
+          <input type="submit" value="編集" />
+        </form>
+        <form
+          action="/articles/<%= article.article_id %>/delete-page"
+          method="get"
+        >
+          <input type="submit" value="削除" />
+        </form>
+        <% } else { %>
+        <p>質問ユーザーのみ編集、削除できます。</p>
+        <% } %>
+      </div>
+      <div class="answer">
+        <h2>回答</h2>
+        <% if(article.answers){ %> <% // 回答をgoodの数で降順にソート
+        article.answers.sort((a, b) => b.good - a.good); const topAnswer =
+        article.answers[0].good %><% article.answers.forEach(answer => { %>
+        <div class="answer-content">
+          <h5>
+            <% if(answer.good === topAnswer) { %>
+            <p style="color: red; font-size: 20px">
+              <strong>ベスト回答</strong>
+            </p>
+            <% } %> 回答ユーザー: <%= answer.user %> <% if(typeof user ===
+            "undefined") { %>
+
+            <p><strong> 👍: <%=answer.good %> </strong></p>
+            <%} else { %>
+            <form
+              action="/articles/<%= article.article_id %>/good"
+              method="post"
+            >
+              <button type="submit" class="submit-complete">
+                <strong> 👍: <%=answer.good %> </strong>
+              </button>
+              <input type="hidden" value="<%=answer.id%>" name="answerId" />
+              <input
+                type="hidden"
+                value="<%=article.article_id%>"
+                name="articleId"
+              />
+            </form>
+            <% } %>
+          </h5>
+          <p><%= answer.content %></p>
+        </div>
+        <% }); %> <% } %> <% if (typeof user === "undefined") { %>
+        <p class="answer-logout">回答するにはログインしてください。</p>
+        <% } else { %>
+        <form action="/articles/<%= article.article_id %>/answer" method="post">
+          <textarea cols="50" rows="5" name="content"></textarea>
+          <div><input type="submit" value="回答" class="button" /></div>
+        </form>
+        <% } %>
+      </div>
+    </main>
+  </body>
+</html>

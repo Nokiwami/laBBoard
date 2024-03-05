@@ -1,0 +1,17 @@
+<%# 記事の削除画面のejs %>
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <script type="text/javascript" src="/delete.js" ></script>
+  <body>
+    <%- include('header') %>
+    <main>
+      <h1>削除</h1>
+      <h2><%= article.title %></h2>
+      <p><%= article.content %></p>
+      <h3>この記事を削除しますか？</h3>
+      <button onclick="deleteResource('<%= article.article_id %>')">削除</button>
+      <div><a href="/articles/<%=article.article_id%>">戻る</a></div>
+    </main>
+  </body>
+</html>

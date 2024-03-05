@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <%- include('header') %>
+    <main>
+      <div class="register" style="float: left; margin-right: 100px;">
+        <h1>会員登録</h1>
+        <form action="/auth/signup" method="post">
+          <p>ユーザーネーム</p>
+          <div><input required type="text" name="username" /></div>
+          <p>パスワード</p>
+          <div><input required type="text" name="password" /></div>
+          <div><input type="submit" value="登録" /></div>
+        </form>
+      </div>
+      <div class="login">
+        <h1>ログイン</h1>
+        <form action="/auth/login" method="post">
+          <p>ユーザーネーム</p>
+          <div><input required type="text" name="username" /></div>
+          <p>パスワード</p>
+          <div><input required type="text" name="password" /></div>
+          <div><input type="submit" value="ログイン" /></div>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

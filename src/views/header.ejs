@@ -1,0 +1,11 @@
+<header>
+    <h1><a href="/articles" id="header_title" >Lab Note</a></h1>
+    <div class="user">
+        <% if (typeof user !== "undefined") { %>
+            <p>ログイン済みユーザー: <%= user.username %></p>
+            <a href="/articles/logout">ログアウト</a>
+        <% } else { %>
+            <a href="/auth">会員登録/ログイン</a>
+        <% } %>
+    </div>
+</header>

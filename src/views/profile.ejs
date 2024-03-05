@@ -1,0 +1,17 @@
+<%# トップ画面のejs %>
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <%- include('header') %>
+    <main>
+      <h2>記事一覧</h2>
+      <p><%= user %></p>
+      <div>
+        <form action="/articles/add-page" method="get">
+          <p><input type="submit" value="追加" /></p>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

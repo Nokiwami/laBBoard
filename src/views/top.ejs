@@ -1,0 +1,23 @@
+<%# トップ画面のejs %>
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <%- include('header') %>
+    <main>
+      <h2>質問一覧</h2>
+      <% for (var art of articles) { %>
+        <div class="articles_list">
+          <h3 class="content-title"><a href="/articles/<%=art.article_id%>"><%=art.title%></a></h3>
+          <h5 class="content-user">質問ユーザー: <%=art.user%></h5>
+          <p><%=art.content%></p>
+        </div>
+      <% } %>
+      <div>
+        <form action="/articles/add-page" method="get">
+          <p><input class="button" type="submit" value="質問する" /></p>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<%# 記事の追加画面のejs %>
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <%- include('header') %>
+    <main>
+      <h1>追加</h1>
+      <form action="/articles" method="post">
+        <p>タイトル</p>
+        <div><input required type="text" name="title" /></div>
+        <p>内容</p>
+        <div><textarea style="width: 100%;" rows="5" name="content"></textarea></div>
+        <% if (typeof user !== "undefined") { %>
+          <div><input type="submit" value="質問" class="button"/></div>
+        <% } else { %>
+          <p>ログインしてください。</p>
+        <% } %>
+      </form>
+    </main>
+  </body>
+</html>

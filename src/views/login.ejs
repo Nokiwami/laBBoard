@@ -1,0 +1,18 @@
+<%# トップ画面のejs %>
+<!DOCTYPE html>
+<html>
+  <%- include('head') %>
+  <body>
+    <%- include('header') %>
+    <main>
+      <h2>ログインしました。</h2>
+      <script>
+        const accessToken = "Bearer " + "<%= accessToken %>";
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + 7); // 有効期限を7日に設定
+        // クッキーを設定
+        document.cookie = "jwt=" + encodeURIComponent(accessToken) + "; expires=" + expirationDate.toUTCString() + "; path=/; SameSite=Lax";
+      </script>
+    </main>
+  </body>
+</html>

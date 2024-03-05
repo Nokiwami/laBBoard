@@ -1,0 +1,21 @@
+<%# 記事の編集画面のejs %>
+<!doctype html>
+<html>
+  <%- include('head') %>
+  <script type="text/javascript" src="/edit.js" ></script>
+  <body>
+    <%- include('header') %>
+    <main>
+      <p>タイトル</p>
+      <div>
+        <input type="text" name="title" value="<%=article.title%>" id="title"/>
+      </div>
+      <p>内容</p>
+      <div>
+        <textarea cols="50" rows="5" name="content" id="content"><%=article.content%></textarea>
+      </div>
+    <button onclick="editResource('<%= article.article_id %>')">更新</button>
+  </main>
+      <div><a href="/articles/<%=article.article_id%>">戻る</a></div>
+  </body>
+</html>
